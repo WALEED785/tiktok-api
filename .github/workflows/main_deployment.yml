@@ -24,6 +24,12 @@ jobs:
         with:
           files: 'composer.json'
 
+      - name: Install Dependencies
+        if: steps.check_files.outputs.files_exists == 'true'
+        run:
+          php --version
+          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USER }}" "${{ secrets.NOVA_KEY }}"
+
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
@@ -60,4 +66,4 @@ jobs:
           app-name: 'tiktok-clone'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_7a01c0a64913453dbeecd5939270bfd4 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
