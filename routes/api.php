@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\FollowerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +41,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::delete('/likes/{id}', [LikeController::class, 'destroy']);
+
+    Route::post('/follow', [FollowerController::class, 'follow']);
+    Route::delete('/follow/{id}', [FollowerController::class, 'unfollow']);
+    Route::get('/count-following', [FollowerController::class, 'countFollowing']);
+    Route::get('/count-followers', [FollowerController::class, 'countFollowers']);
 
 });
