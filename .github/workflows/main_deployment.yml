@@ -1,4 +1,4 @@
-name: Build and deploy PHP app to Azure Web App - tiktok-clone
+name: Build and deploy Laravel app to Azure Web App - tiktok-clone
 
 on:
   push:
